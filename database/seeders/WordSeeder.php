@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class WordSeeder extends Seeder
@@ -12,6 +11,6 @@ class WordSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Word::factory()->count(10)->create(); // Maak 10 woorden aan
     }
 }
