@@ -3,63 +3,38 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePuzzleRequest;
+use App\Http\Resources\PuzzleResource;
+use App\Models\Puzzle;
+use Illuminate\Http\Response;
 
 class PuzzleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return PuzzleResource::collection(Puzzle::with('category')->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StorePuzzleRequest $request)
     {
-        //
+        $puzzle = Puzzle::create($request->validated());
+        return new PuzzleResource($puzzle);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(Puzzle $puzzle)
     {
-        //
+        return new PuzzleResource($puzzle->load('category'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(StorePuzzleRequest $request, Puzzle $puzzle)
     {
-        //
+        $puzzle->update($request->validated());
+        return new PuzzleResource($puzzle);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(Puzzle $puzzle)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $puzzle->delete();
+        return response()->noContent();
     }
 }

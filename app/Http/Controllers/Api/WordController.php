@@ -3,63 +3,38 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreWordRequest;
+use App\Http\Resources\WordResource;
+use App\Models\Word;
+use Illuminate\Http\Response;
 
 class WordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return WordResource::collection(Word::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StoreWordRequest $request)
     {
-        //
+        $word = Word::create($request->validated());
+        return new WordResource($word);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(Word $word)
     {
-        //
+        return new WordResource($word);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(StoreWordRequest $request, Word $word)
     {
-        //
+        $word->update($request->validated());
+        return new WordResource($word);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(Word $word)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $word->delete();
+        return response()->noContent();
     }
 }

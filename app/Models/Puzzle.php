@@ -10,12 +10,15 @@ class Puzzle extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'category_id',
-        'word_id',
+        'name',
     ];
-    public function words()
+
+    /**
+     * De categorie die bij de puzzel hoort.
+     */
+    public function category()
     {
-        return $this->belongsToMany(Word::class);
+        return $this->belongsTo(Category::class); // Definieert de relatie met de Category model
     }
 }
