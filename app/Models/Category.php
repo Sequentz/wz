@@ -10,6 +10,14 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'category',
     ];
+
+    /**
+     * De puzzels die bij deze categorie horen.
+     */
+    public function puzzles()
+    {
+        return $this->hasMany(Puzzle::class);
+    }
 }
