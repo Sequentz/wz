@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWordRequest;
 use App\Http\Resources\WordResource;
 use App\Models\Word;
+use App\Models\Category;
 use Illuminate\Http\Response;
 
-class WordController extends Controller
+
+class WordApiController extends Controller
 {
     public function index()
     {
@@ -20,6 +22,7 @@ class WordController extends Controller
         $word = Word::create($request->validated());
         return new WordResource($word);
     }
+
 
     public function show(Word $word)
     {

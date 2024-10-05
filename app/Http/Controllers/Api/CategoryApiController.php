@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+
+class CategoryApiController extends Controller
 {
     public function index()
     {
@@ -26,7 +27,8 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
-    public function update(StoreCategoryRequest $request, Category $category)
+    /*************  ✨ Codeium Command ⭐  *************/
+    /******  0ff4d8ba-fd49-4427-880f-fac5805fe19b  *******/    public function update(StoreCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
         return new CategoryResource($category);

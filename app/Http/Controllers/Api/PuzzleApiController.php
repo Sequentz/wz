@@ -8,7 +8,7 @@ use App\Http\Resources\PuzzleResource;
 use App\Models\Puzzle;
 use Illuminate\Http\Response;
 
-class PuzzleController extends Controller
+class PuzzleApiController extends Controller
 {
     public function index()
     {
@@ -32,6 +32,14 @@ class PuzzleController extends Controller
         return new PuzzleResource($puzzle);
     }
 
+    /*************  ✨ Codeium Command ⭐  *************/
+    /**
+     * Delete a puzzle.
+     *
+     * @param  \App\Models\Puzzle  $puzzle
+     * @return \Illuminate\Http\Response
+     */
+    /******  0984fd12-9744-4b36-8d60-ba2ce8ff56dd  *******/
     public function destroy(Puzzle $puzzle)
     {
         $puzzle->delete();
