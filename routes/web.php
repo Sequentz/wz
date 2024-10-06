@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\WordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,20 @@ Route::middleware([
     Route::put('/categories/{category}/update', [CategoryController::class, 'update'])->name('categories.update');
     // DELETE CATEGORy
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
+
+
+    // WORDS
+
+    // OVERVIEW
+    Route::get('/words', [WordController::class, 'index'])->name('words.index');
+    // ADD CATEGORY
+    Route::get('/words/create', [WordController::class, 'create'])->name('words.create');
+    Route::post('/words', [WordController::class, 'store'])->name('words.store');
+    // EDIT CATEGORY
+    Route::get('/words/{word}/edit', [WordController::class, 'edit'])->name('words.edit');
+    Route::put('/words/{word}/update', [WordController::class, 'update'])->name('words.update');
+    // DELETE CATEGORy
+    Route::delete('/words/{word}', [WordController::class, 'destroy'])->name('words.destroy');
 });

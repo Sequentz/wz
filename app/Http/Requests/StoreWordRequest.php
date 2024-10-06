@@ -10,6 +10,7 @@ class StoreWordRequest extends FormRequest
     {
         return [
             'word' => 'required|string|max:255',
+
         ];
     }
 
