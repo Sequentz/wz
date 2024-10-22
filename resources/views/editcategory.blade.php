@@ -13,7 +13,7 @@
             <div class="grid grid-cols-1 gap-6">
                 <div>
                     <label for="name" class="block text-lg font-medium text-gray-700">Category Name</label>
-                    <input type="text" name="name" id="name" class="mt-1 block w-full min-w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('name', $category->category) }}">
+                    <input type="text" name="word" id="word" class="mt-1 block w-full min-w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('category', $category->category) }}">
                     @error('name')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                     @enderror

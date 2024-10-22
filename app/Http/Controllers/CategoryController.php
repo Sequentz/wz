@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use Illuminate\Contracts\Cache\Store;
 
@@ -56,10 +57,12 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
 
-        $category->update($request->validated());
+        $validated = $request->validated();
+        $category->update(['category' => $validated['category']]);
+
         return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
     }
 
